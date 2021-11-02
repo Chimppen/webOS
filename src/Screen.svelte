@@ -7,6 +7,8 @@
 </div>
 
 <script>
+import { screen } from "./memory/screen";
+
 import Taskbar from "./components/Taskbar.svelte";
 
 import Topbar from "./components/Topbar.svelte";
