@@ -23,7 +23,7 @@ let taskbar
 function newApp(app){
     
     dispatch('openApp',{
-        app: app.main()
+        app: app
     })
 
 }
