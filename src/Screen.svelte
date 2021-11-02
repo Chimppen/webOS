@@ -13,4 +13,20 @@ import Taskbar from "./components/Taskbar.svelte";
 
 import Topbar from "./components/Topbar.svelte";
 
+let app
+
+function openApp(event){
+
+     app =  event.detail.app
+
+     let appConstructor = app.main()
+
+    let x =  new appConstructor({
+        target:$screen,
+        props:{
+            name:app.name
+        }
+    })
+}
+ 
 </script>
