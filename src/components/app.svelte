@@ -1,4 +1,4 @@
-<div bind:this="{app}" class="absolute bg-white border-2 rounded-3xl shadow-2xl" style="min-width:{width}; min-height:{height}; left:{left}px; top:{top}px;" on:mouseenter="{focus}" on:mouseleave="{focus}">
+<div on:click={focus} on:drag={focus} bind:this="{app}" class="absolute bg-white border-2 rounded-3xl shadow-2xl" style="min-width:{width}; min-height:{height}; left:{left}px; top:{top}px; z-index: {zIndex};">
 
     <div class="w-full p-2 px-4 rounded-t-3xl flex justify-between bg-gray-50" on:mousedown="{onMouseDown}">
         <div class="">
@@ -12,32 +12,35 @@
    <slot></slot>
 </div>
 
-<svelte:window on:mouseup={onMouseUp} on:mousemove={onMouseMove} />
-<script>
-import { createEventDispatcher } from "svelte";
+<svelte:window  on:mousedown="{focus}" on:mouseup={onMouseUp} on:mousemove={onMouseMove} />
 
+
+<script>
+
+import { createEventDispatcher } from "svelte";
+import { os } from "../OS";
 
 export let width, height, name
 
 let app
 
+
 // closing app
 let dispatch = createEventDispatcher()
 
 function triggerClose() {
-    app.remove()
-    dispatch('appClose')
+    //app.remove()
+    dispatch('implimentClosing')
 }
+
+
 
 // Focusing 
-
+let zIndex = 10
 function focus(event) {
-    if(event.type === 'mouseenter'){
-        app.classList.add('z-30')
-    }else{
-        app.classList.remove('z-30')
-    }
+  zIndex = zIndex + 10
 }
+
 
 
 
@@ -68,8 +71,6 @@ function resize() {
 
 
 //moving the app around
-
-
 let left = Math.floor(Math.random(0)*300)
 let top = Math.floor(Math.random(0)*100)
 

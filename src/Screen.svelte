@@ -7,25 +7,28 @@
 </div>
 
 <script>
-import { screen } from "./memory/screen";
+import { screen } from "./stores/screen";
 
 import Taskbar from "./components/Taskbar.svelte";
 
 import Topbar from "./components/Topbar.svelte";
 
-let app
+
 
 function openApp(event){
 
-     app =  event.detail.app
+    let app = event.detail.app
 
-     let appConstructor = app.main()
-
-    let x =  new appConstructor({
+    let process  = new app.main({
         target:$screen,
         props:{
             name:app.name
         }
+    })
+
+    process.$on('closeApp',()=>{
+        console.log('closing app');
+        process.$destroy()
     })
 }
  

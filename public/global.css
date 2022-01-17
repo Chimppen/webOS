@@ -625,10 +625,6 @@ video {
   bottom: 0px;
 }
 
-.z-30 {
-  z-index: 30;
-}
-
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -662,14 +658,6 @@ video {
   height: 100%;
 }
 
-.max-h-full {
-  max-height: 100%;
-}
-
-.min-h-full {
-  min-height: 100%;
-}
-
 .w-screen {
   width: 100vw;
 }
@@ -700,6 +688,10 @@ video {
 
 .gap-3 {
   gap: 0.75rem;
+}
+
+.gap-4 {
+  gap: 1rem;
 }
 
 .overflow-hidden {
